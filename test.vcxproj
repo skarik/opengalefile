@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup Label="ProjectConfigurations">
+        <ProjectConfiguration Include="Debug|Win32">
+            <Configuration>Debug</Configuration>
+            <Platform>Win32</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|Win32">
+            <Configuration>Release</Configuration>
+            <Platform>Win32</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Debug|x64">
+            <Configuration>Debug</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|x64">
+            <Configuration>Release</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+    </ItemGroup>
+    <PropertyGroup Label="Globals">
+        <VCProjectVersion>15.0</VCProjectVersion>
+        <ProjectGuid>{450A4B11-5212-4733-9841-14E7ED080C4E}</ProjectGuid>
+        <RootNamespace>test</RootNamespace>
+        <!-- Change this if things don't work. It doesn't matter. It should work with 8.1 SDK. -->
+        <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+    <!-- Build Configuration options -->
+    <PropertyGroup Label="Configuration">
+        <ConfigurationType>Application</ConfigurationType>
+        <UseDebugLibraries>true</UseDebugLibraries>
+        <!-- This really shouldn't matter but it bitches if it can't find it. -->
+        <PlatformToolset>v141</PlatformToolset>
+        <CharacterSet>NotSet</CharacterSet>
+        <OutDir>out\$(ProjectName)_$(Configuration)_$(Platform)\</OutDir>
+        <IntDir>obj\$(ProjectName)_$(Configuration)_$(Platform)\</IntDir>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+        <WholeProgramOptimization>true</WholeProgramOptimization>
+    </PropertyGroup>
+    <!-- More auto-generated junk -->
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+    <ImportGroup Label="ExtensionSettings">
+    </ImportGroup>
+    <ImportGroup Label="Shared">
+    </ImportGroup>
+    <ImportGroup Label="PropertySheets">
+        <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    </ImportGroup>
+    <PropertyGroup Label="UserMacros" />
+    <!-- Build options -->
+    <!-- Common to all: -->
+    <ItemDefinitionGroup>
+        <ClCompile>
+            <WarningLevel>Level3</WarningLevel>
+            <SDLCheck>false</SDLCheck>
+            <ConformanceMode>false</ConformanceMode>
+            <BufferSecurityCheck>false</BufferSecurityCheck>
+            <AdditionalIncludeDirectories>include;include-lib</AdditionalIncludeDirectories>
+            <MultiProcessorCompilation>true</MultiProcessorCompilation>
+            <!-- Enable parallel features so that some of this will maybe be faster? -->
+            <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+            <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+            <IntrinsicFunctions>true</IntrinsicFunctions>
+            <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+        </ClCompile>
+        <Link>
+            <AdditionalDependencies>zlibstatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+    </ItemDefinitionGroup>
+    <!-- Per platform options -->
+    <ItemDefinitionGroup Condition="'$(Platform)'=='Win32'">
+        <Link>
+            <AdditionalLibraryDirectories>lib/win32x86</AdditionalLibraryDirectories>
+        </Link>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Platform)'=='x64'">
+        <Link>
+            <AdditionalLibraryDirectories>lib/win32x64</AdditionalLibraryDirectories>
+        </Link>
+    </ItemDefinitionGroup>
+    <!-- Per configuration options -->
+    <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+        <ClCompile>
+            <Optimization>Disabled</Optimization>
+        </ClCompile>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+        <ClCompile>
+            <Optimization>MaxSpeed</Optimization>
+            <FunctionLevelLinking>true</FunctionLevelLinking>
+        </ClCompile>
+        <Link>
+            <EnableCOMDATFolding>true</EnableCOMDATFolding>
+            <OptimizeReferences>true</OptimizeReferences>
+        </Link>
+    </ItemDefinitionGroup>
+    <!-- Dependancies -->
+    <ItemGroup>
+        <ProjectReference Include="opengalefile.vcxproj">
+            <Project>{07826EDA-8A43-4455-BA70-8B2BCDCD7B97}</Project>
+            <Private>false</Private>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+            <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+            <!--<LinkLibraryDependencies>true</LinkLibraryDependencies>-->
+            <!--<UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>-->
+        </ProjectReference>
+    </ItemGroup>
+    <!-- Files -->
+    <ItemGroup>
+        <ClCompile Include="src\test\main.cpp" />
+    </ItemGroup>
+    <ItemGroup>
+        <ClInclude Include="include\galefile2.h" />
+    </ItemGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+    <ImportGroup Label="ExtensionTargets">
+    </ImportGroup>
+</Project>

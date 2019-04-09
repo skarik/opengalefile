@@ -15,15 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\galefile2.h">
+    <ClInclude Include="include\galefile2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\opengalefile.h">
+    <ClInclude Include="include\opengalefile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gale_exports.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\galefile2.cpp">
+    <ClCompile Include="src\galefile2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

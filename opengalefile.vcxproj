@@ -23,15 +23,19 @@
         <VCProjectVersion>15.0</VCProjectVersion>
         <ProjectGuid>{07826EDA-8A43-4455-BA70-8B2BCDCD7B97}</ProjectGuid>
         <RootNamespace>opengalefile</RootNamespace>
-        <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion> <!-- Change this if things don't work. It doesn't matter. It should work with 8.1 SDK. -->
+        <!-- Change this if things don't work. It doesn't matter. It should work with 8.1 SDK. -->
+        <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     </PropertyGroup>
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
     <!-- Build Configuration options -->
     <PropertyGroup Label="Configuration">
-        <ConfigurationType>Application</ConfigurationType>
+        <ConfigurationType>StaticLibrary</ConfigurationType>
         <UseDebugLibraries>true</UseDebugLibraries>
-        <PlatformToolset>v141</PlatformToolset> <!-- This really shouldn't matter but it bitches if it can't find it. -->
+        <!-- This really shouldn't matter but it bitches if it can't find it. -->
+        <PlatformToolset>v141</PlatformToolset>
         <CharacterSet>NotSet</CharacterSet>
+        <OutDir>out\$(ProjectName)_$(Configuration)_$(Platform)\</OutDir>
+        <IntDir>obj\$(ProjectName)_$(Configuration)_$(Platform)\</IntDir>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
         <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -46,7 +50,6 @@
         <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     </ImportGroup>
     <PropertyGroup Label="UserMacros" />
-    <PropertyGroup />
     <!-- Build options -->
     <!-- Common to all: -->
     <ItemDefinitionGroup>
@@ -96,11 +99,12 @@
     </ItemDefinitionGroup>
     <!-- Files -->
     <ItemGroup>
-        <ClCompile Include="..\src\galefile2.cpp" />
+        <ClCompile Include="src\galefile2.cpp" />
     </ItemGroup>
     <ItemGroup>
-        <ClInclude Include="..\include\galefile2.h" />
-        <ClInclude Include="..\include\opengalefile.h" />
+        <ClInclude Include="include\galefile2.h" />
+        <ClInclude Include="include\gale_exports.h" />
+        <ClInclude Include="include\opengalefile.h" />
     </ItemGroup>
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
     <ImportGroup Label="ExtensionTargets">
